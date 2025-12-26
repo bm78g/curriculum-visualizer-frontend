@@ -4,12 +4,12 @@ import { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 
 import './Graph.css'
-import setNodePositions from '../../utils/graph/nodePositions'
-import setGraphDefs from '../../utils/graph/graphDefinitions'
-import setNodeAttributes from '../../utils/graph/nodeAttributes'
-import setLinkAttributes from '../../utils/graph/linkAttributes'
-import setLabelAttributes from '../../utils/graph/labelAttributes'
-import setSimulation from '../../utils/graph/graphSimulation'
+import setNodePositions from '../../utils/svg/nodePositions'
+import setGraphDefs from '../../utils/svg/graphDefinitions'
+import setNodeAttributes from '../../utils/svg/nodeAttributes'
+import setLinkAttributes from '../../utils/svg/linkAttributes'
+import setLabelAttributes from '../../utils/svg/labelAttributes'
+import setSimulation from '../../utils/svg/graphSimulation'
 
 export default function NodeGraph({ nodes }) {
     const svgRef = useRef(null)
@@ -39,6 +39,9 @@ export default function NodeGraph({ nodes }) {
             .attr('class', 'svg-root')
 
         svg.selectAll('*').remove() // Cleanup on rerender.
+        svg.on('click', () => {
+            d3.selectAll('.course-node').classed('selected', false)
+        })
 
         // Container under root for panning and zoom.
         const container = svg.append('g')

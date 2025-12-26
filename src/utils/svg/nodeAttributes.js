@@ -1,3 +1,7 @@
+import * as d3 from 'd3'
+
+import getPathTo from '../graph/getRequirementPath'
+
 export default function setNodeAttributes(container, nodes, height) {
     const node = container.append('g')
         .attr('stroke', '#fff')
@@ -35,7 +39,24 @@ export default function setNodeAttributes(container, nodes, height) {
         .attr('stroke', '#AAAAAA')
         .attr('stroke-width', 0.4)
         .attr('stroke-opacity', 0.5)
-        .attr('class', 'course-node')
+        .attr('class', d => {
+            return 'course-node ' + d.id
+        })
+
+    node.on('click', function (event, d) {
+        event.stopPropagation()
+
+        const allNodes = d3.selectAll('.course-node')
+        allNodes.classed('selected', false)
+
+        const selected = d3.select(this)
+        selected.classed('selected', true)
+
+        const coursePath = getPathTo(d.id, nodes)
+        for (const course of coursePath) {
+            d3.select(`.${course}`).classed('selected', true)
+        }
+    })
 
     return node
 }
