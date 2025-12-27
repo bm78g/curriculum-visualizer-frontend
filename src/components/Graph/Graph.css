@@ -15,6 +15,6 @@
     font-weight: 700;
 }
 
-.course-node.selected {
-    fill: #FFFFFF;
+.link.selected {
+    stroke-opacity: 1;
 }

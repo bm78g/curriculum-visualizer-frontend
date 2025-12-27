@@ -18,7 +18,8 @@ export default function setGraphDefs(svg) {
     const gradients = {
         course: ['#242a3b', '#2a3645'],
         and: ['#a46449', '#a46449'],
-        or: ['#3c593e', '#3c593e']
+        or: ['#3c593e', '#3c593e'],
+        courseSelected: ['#383d6e', '#4d386e']
     }
 
     // Node linear gradient definition.
