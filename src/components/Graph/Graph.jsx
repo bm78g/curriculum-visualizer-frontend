@@ -10,6 +10,7 @@ import setNodeAttributes from '../../utils/svg/nodeAttributes'
 import setLinkAttributes from '../../utils/svg/linkAttributes'
 import setLabelAttributes from '../../utils/svg/labelAttributes'
 import setSimulation from '../../utils/svg/graphSimulation'
+import nodeSelectHandler from '../../utils/graph/nodeSelectHandler'
 
 export default function NodeGraph({ nodes }) {
     const svgRef = useRef(null)
@@ -39,9 +40,7 @@ export default function NodeGraph({ nodes }) {
             .attr('class', 'svg-root')
 
         svg.selectAll('*').remove() // Cleanup on rerender.
-        svg.on('click', () => {
-            d3.selectAll('.course-node').classed('selected', false)
-        })
+        svg.on('click', nodeSelectHandler(nodes))
 
         // Container under root for panning and zoom.
         const container = svg.append('g')
@@ -59,8 +58,6 @@ export default function NodeGraph({ nodes }) {
         .force('link',
             d3.forceLink(links)
             .id(d => d.id)
-            .distance(150)
-            .strength(0.3)
         )
 
         // Sets SVG attributes.
