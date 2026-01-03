@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import './App.css'
-import CSGraph from './components/computer_science/CSGraph/CSGraph'
+import NodeGraph from './components/Graph/Graph'
 import csLogo from './assets/pc-logo-placeholder.png'
 
 function App() {
@@ -17,8 +17,7 @@ function App() {
       edges: [],
       dist: 0,
       showId: false,
-      isDir: true,
-      destDir: 'major-req'
+      isDir: true
     },
     {
       id: 'tech',
@@ -27,8 +26,7 @@ function App() {
       edges: [],
       dist: 0,
       showId: false,
-      isDir: true,
-      destDir: 'technical-req'
+      isDir: true
     }
   ]
 
@@ -49,7 +47,7 @@ function App() {
       </div>
       {csGraph ? (
         <div id='graph-container'>
-          <CSGraph nodes={csHomeGraph} />
+          <NodeGraph nodes={csHomeGraph} />
         </div>
       ) : (
         'Loading...'
