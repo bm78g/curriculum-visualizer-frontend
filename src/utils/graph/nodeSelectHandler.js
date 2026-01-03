@@ -6,6 +6,14 @@ import getPathTo from '../graph/getRequirementPath'
 
 export default function nodeSelectHandler(nodes) {
     return function (event, d) {
+        const clicked = nodes.find(node => {
+            if (d === undefined)
+                return false
+            if (d.id === node.id)
+                return true
+        })
+        console.log('ran')
+
         event.stopPropagation()
 
         // Removes selected effect from all nodes and links.
@@ -19,22 +27,29 @@ export default function nodeSelectHandler(nodes) {
             .attr('stroke-opacity', 0.1)
             .attr('stroke', '#999')
 
-        // Applies 'selected' class to all related nodes.
-        const selected = d3.select(this)
-        selected.classed('selected', true)
-
-        if (d === undefined)
+        if (clicked === undefined)
             return
-        // Adds an effect to all nodes with the 'selected' class.
-        const coursePath = getPathTo(d.id, nodes)
-        for (const course of coursePath) {
-            const selector = `.${course.id.toLowerCase()}`
-            if (selector !== '.') {
-                const selected = d3.selectAll(selector).classed('selected', true)
-                selected
-                    .attr('stroke-width', 3)
-                    .attr('stroke-opacity', 1)
-                    .attr('stroke', '#CCCCCC')
+
+        if (clicked.isDir) {
+            console.log('directory node')
+        } else {
+            // Applies 'selected' class to all related nodes.
+            const selected = d3.select(this)
+            selected.classed('selected', true)
+
+            if (d === undefined)
+                return
+            // Adds an effect to all nodes with the 'selected' class.
+            const coursePath = getPathTo(d.id, nodes)
+            for (const course of coursePath) {
+                const selector = `.${course.id.toLowerCase()}`
+                if (selector !== '.') {
+                    const selected = d3.selectAll(selector).classed('selected', true)
+                    selected
+                        .attr('stroke-width', 3)
+                        .attr('stroke-opacity', 1)
+                        .attr('stroke', '#CCCCCC')
+                }
             }
         }
     }
