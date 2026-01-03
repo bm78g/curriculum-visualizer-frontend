@@ -12,6 +12,8 @@ import setLabelAttributes from '../../utils/svg/labelAttributes'
 import setSimulation from '../../utils/svg/graphSimulation'
 import nodeSelectHandler from '../../utils/graph/nodeSelectHandler'
 
+import assignNodeProps from '../../utils/graph/assignNodeProps'
+
 export default function NodeGraph({ nodes }) {
     const svgRef = useRef(null)
     const links = []
@@ -30,16 +32,7 @@ export default function NodeGraph({ nodes }) {
 
     // Pre-computes each nodes' positions.
     setNodePositions(nodes)
-    // Assigns showId without overriding pre-existing values.
-    nodes = nodes.map(node => {
-        if (!("showId" in node)) {
-            return {
-                ...node,
-                showId: true
-            }
-        }
-        return node
-    })
+    assignNodeProps(nodes)
 
     useEffect(() => {
         // Root SVG.

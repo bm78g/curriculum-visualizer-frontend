@@ -4,7 +4,6 @@ import axios from 'axios'
 import './App.css'
 import NodeGraph from './components/Graph/Graph'
 import csLogo from './assets/pc-logo-placeholder.png'
-import getPathTo from './utils/graph/getRequirementPath'
 
 function App() {
   const baseUrl = 'http://localhost:3001/api/catalog/cs'
@@ -17,7 +16,8 @@ function App() {
       requirement: {},
       edges: [],
       dist: 0,
-      showId: false
+      showId: false,
+      isDir: true
     },
     {
       id: 'tech',
@@ -25,7 +25,8 @@ function App() {
       requirement: {},
       edges: [],
       dist: 0,
-      showId: false
+      showId: false,
+      isDir: true
     }
   ]
 
