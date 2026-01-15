@@ -6,6 +6,8 @@ Only includes Computer Science catalogs.
 
 https://bm78g.github.io/road-to-grad-frontend/
 
+Link to the backend repository: https://github.com/bm78g/road-to-grad-backend
+
 ## Tech Stack
 
 - React + Vite
