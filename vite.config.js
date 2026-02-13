@@ -10,5 +10,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/road-to-grad-frontend/",
+  base: "/curriculum-visualizer-frontend/",
 })

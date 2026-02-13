@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://bm78g.github.io/road-to-grad-frontend",
+  "homepage": "https://bm78g.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
