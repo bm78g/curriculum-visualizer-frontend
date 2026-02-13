@@ -1,7 +1,7 @@
 import './App.css'
 import CSGraph from './components/CSHome/CSGraph'
-import rtgLogo from './assets/roadtograd-logo.png'
-import csLogo from './assets/question-logo.png'
+import rtgLogo from '/images/roadtograd-logo.png'
+import csLogo from '/images/question-logo.png'
 
 function App() {
   return (
